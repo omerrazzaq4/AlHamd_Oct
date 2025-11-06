@@ -140,7 +140,7 @@
     <div id="partyButtons"></div>
   </div>
 
-  <button id="printBtn" class="print-btn" onclick="window.print()" style="display: none;">Print Ledger</button>
+  <button id="printBtn" class="print-btn" onclick="printLedger()" style="display: none;">Print Ledger</button>
 
   <div id="results"></div>
 
@@ -150,6 +150,7 @@
     let cashbookData = [];
     let cashflowData = {};
     let allParties = new Set();
+    let currentPartyName = null; // Store current party name for printing
 
     // Auto-load on page load
     window.addEventListener("DOMContentLoaded", autoLoadExcel);
@@ -419,7 +420,27 @@
       document.getElementById('partySection').style.display = 'block';
     }
 
+    function printLedger() {
+      if (currentPartyName) {
+        // Set document title to party name for PDF filename
+        const originalTitle = document.title;
+        document.title = `${currentPartyName} - Ledger`;
+        
+        // Print
+        window.print();
+        
+        // Restore original title after a short delay
+        setTimeout(() => {
+          document.title = originalTitle;
+        }, 1000);
+      } else {
+        window.print();
+      }
+    }
+
     function showLedger(partyName) {
+      currentPartyName = partyName; // Store current party name
+      
       const bills = billsData.filter(b => b.party === partyName);
       const payments = cashbookData.filter(p => p.party === partyName);
       
@@ -540,4 +561,3 @@
   </script>
 </body>
 </html>
-
