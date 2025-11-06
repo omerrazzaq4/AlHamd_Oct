@@ -420,24 +420,29 @@
       document.getElementById('partySection').style.display = 'block';
     }
 
-    function printLedger() {
+    // Listen for before print to set title
+    window.addEventListener('beforeprint', () => {
       if (currentPartyName) {
-        // Set document title to party name for PDF filename
         document.title = `${currentPartyName} - Ledger`;
-        
-        // Use setTimeout to ensure title change is applied
-        setTimeout(() => {
-          window.print();
-        }, 100);
-      } else {
-        window.print();
       }
-    }
+    });
 
     // Listen for after print to restore title
     window.addEventListener('afterprint', () => {
       document.title = 'Party Ledger Reconciliation - Al-Hamd Dyeing';
     });
+
+    function printLedger() {
+      if (currentPartyName) {
+        // Set document title to party name for PDF filename
+        document.title = `${currentPartyName} - Ledger`;
+      }
+      
+      // Small delay to ensure title is updated
+      setTimeout(() => {
+        window.print();
+      }, 50);
+    }
 
     function showLedger(partyName) {
       currentPartyName = partyName; // Store current party name
