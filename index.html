@@ -65,6 +65,21 @@
       font-style: italic;
       color: #666;
     }
+    .timestamp {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(42, 82, 152, 0.9);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    .timestamp strong {
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
@@ -119,21 +134,45 @@
   </div>
 
   <div id="reconciliation" class="tool-section">
-  <div class="tool-description">
-    📊 <strong>Party Reconciliation:</strong> View merged ledger with bills and payments for each party
+    <div class="tool-description">
+      📊 <strong>Party Reconciliation:</strong> View merged ledger with bills and payments for each party
+    </div>
+    <iframe src="party-reconciliation.html"></iframe>
   </div>
-  <iframe src="party-reconciliation.html"></iframe>
-</div>
 
-  <!-- Add this section after your other tool sections -->
-<div id="wood-reconciliation" class="tool-section">
-  <div class="tool-description">
-    🪵 <strong>Wood Reconciliation:</strong> View merged ledger with wood bills and payments for each party
+  <!-- Tool 6: Wood Reconciliation -->
+  <div id="wood-reconciliation" class="tool-section">
+    <div class="tool-description">
+      🪵 <strong>Wood Reconciliation:</strong> View merged ledger with wood bills and payments for each party
+    </div>
+    <iframe src="wood-reconciliation.html"></iframe>
   </div>
-  <iframe src="wood-reconciliation.html"></iframe>
-</div>
+
+  <!-- Timestamp Display -->
+  <div class="timestamp">
+    <strong>Last Updated:</strong> <span id="lastUpdated"></span>
+  </div>
 
   <script>
+    // Display last updated timestamp
+    function displayTimestamp() {
+      const lastUpdated = document.getElementById('lastUpdated');
+      const now = new Date();
+      const options = { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true 
+      };
+      lastUpdated.textContent = now.toLocaleString('en-US', options);
+    }
+    
+    // Call on page load
+    displayTimestamp();
+
     function switchTool() {
       const selector = document.getElementById("toolSelect").value;
       document.querySelectorAll(".tool-section").forEach(div => div.style.display = "none");
@@ -143,6 +182,4 @@
     }
   </script>
 </body>
-
 </html>
-
