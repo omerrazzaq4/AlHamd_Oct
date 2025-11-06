@@ -423,20 +423,21 @@
     function printLedger() {
       if (currentPartyName) {
         // Set document title to party name for PDF filename
-        const originalTitle = document.title;
         document.title = `${currentPartyName} - Ledger`;
         
-        // Print
-        window.print();
-        
-        // Restore original title after a short delay
+        // Use setTimeout to ensure title change is applied
         setTimeout(() => {
-          document.title = originalTitle;
-        }, 1000);
+          window.print();
+        }, 100);
       } else {
         window.print();
       }
     }
+
+    // Listen for after print to restore title
+    window.addEventListener('afterprint', () => {
+      document.title = 'Party Ledger Reconciliation - Al-Hamd Dyeing';
+    });
 
     function showLedger(partyName) {
       currentPartyName = partyName; // Store current party name
