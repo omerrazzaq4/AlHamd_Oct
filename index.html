@@ -95,8 +95,10 @@
       <option value="wood">🪵 Wood Bill Sheet</option>
       <option value="dyes">🎨 Dyes Bill Sheet</option>
       <option value="cashbook">💰 Cashbook Analyzer</option>
+      <option value="cashbook-date">📅 Cashbook by Date</option>
       <option value="finder">🔍 General Bill Finder</option>
       <option value="reconciliation">📊 Party Reconciliation</option>
+      <option value="reconciliation-detailed">📋 Party Reconciliation (Detailed)</option>
       <option value="wood-reconciliation">🪵 Wood Reconciliation</option>
     </select>
   </div>
@@ -125,6 +127,14 @@
     <iframe src="cashbook.html"></iframe>
   </div>
 
+  <!-- Tool 3b: Cashbook by Date -->
+  <div id="cashbook-date" class="tool-section">
+    <div class="tool-description">
+      📅 <strong>Cashbook by Date:</strong> View all transactions for a specific day, with debit/credit totals and running balance
+    </div>
+    <iframe src="cashbook_by_date.html"></iframe>
+  </div>
+
   <!-- Tool 4: General Bill Finder -->
   <div id="finder" class="tool-section">
     <div class="tool-description">
@@ -138,6 +148,14 @@
       📊 <strong>Party Reconciliation:</strong> View merged ledger with bills and payments for each party
     </div>
     <iframe src="party-reconciliation.html"></iframe>
+  </div>
+
+  <!-- Tool 5b: Party Reconciliation (Detailed) -->
+  <div id="reconciliation-detailed" class="tool-section">
+    <div class="tool-description">
+      📋 <strong>Party Reconciliation (Detailed):</strong> Merged ledger with full bill details (bill no, quality, shipment, kora, tiyaar, rate) and payments for each party
+    </div>
+    <iframe src="party-reconciliation-detailed.html"></iframe>
   </div>
 
   <!-- Tool 6: Wood Reconciliation -->
